@@ -9,20 +9,34 @@ function clearResult() {
 }
 
 function calculate() {
+    const expression = resultField.value.trim();
+
+    if (expression === "") {
+        resultField.value = "Error";
+        return;
+    }
+
     try {
-        const expression = resultField.value;
-
-        if (expression.trim() === "") {
-            resultField.value = "Error";
-            return;
-        }
-
+        
         if (/\/\s*0(?:\D|$)/.test(expression)) {
             resultField.value = "Cannot divide by zero";
             return;
         }
 
-        resultField.value = eval(expression);
+       
+        if (!/^[0-9+\-*/.()\s]+$/.test(expression)) {
+            resultField.value = "Invalid input";
+            return;
+        }
+
+        const answer = eval(expression);
+
+        if (!Number.isFinite(answer)) {
+            resultField.value = "Error";
+            return;
+        }
+
+        resultField.value = answer;
     } catch (error) {
         resultField.value = "Error";
     }
