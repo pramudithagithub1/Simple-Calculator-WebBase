@@ -10,7 +10,19 @@ function clearResult() {
 
 function calculate() {
     try {
-        resultField.value = eval(resultField.value);
+        const expression = resultField.value;
+
+        if (expression.trim() === "") {
+            resultField.value = "Error";
+            return;
+        }
+
+        if (/\/\s*0(?:\D|$)/.test(expression)) {
+            resultField.value = "Cannot divide by zero";
+            return;
+        }
+
+        resultField.value = eval(expression);
     } catch (error) {
         resultField.value = "Error";
     }
