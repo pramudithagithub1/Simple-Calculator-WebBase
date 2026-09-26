@@ -1,2 +1,2 @@
 # Simple-Calculator-WebBase
-HTML,JS,CSS  using Create  Calculator and Running through Web Browser 
+A simple calculator Web-application developed for testing and version control activity.
